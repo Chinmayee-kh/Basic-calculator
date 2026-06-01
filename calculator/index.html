@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+background: linear-gradient(to bottom, #ffc7ee, #ffe6f2);
+
+overflow: hidden;
+    }
+    .calculator {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(255, 171, 217, 0.873);
+    }
+    .calculator h1 {
+        text-align: center;
+        margin-bottom: 15px;
+        color: #ff69b4;
+    }
+    #display {
+        width: 100%;
+        height: 60px;
+        font-size: 24px;
+        text-align: right;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 2px solid #ffe4fc;
+        border-radius: 10px;
+    }
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 70px);
+        gap: 10px;
+    }
+    button {
+        height: 60px;
+        border: none;
+        border-radius: 10px;
+        font-size: 22px;
+        cursor: pointer;
+        background: #ffb6ed;
+        transition: 0.2s;
+    }
+    button:hover {
+        background: #ff6bbc;
+    }
+    .operator {
+        background: #f81583e1;
+        color: white;
+    }
+    .operator:hover {
+        background: #e60099;
+    }
+    .equal {
+        background: #f81583e1;
+        color: white;
+    }
+    .equal:hover {
+        background: #e60099;
+    }
+    .clear {
+        background: #f81583e1;
+        color: white;
+    }
+    .clear:hover {
+        background: #e60099;
+    }
+    .cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    opacity: 0.8;
+}
+
+.cloud::before,
+.cloud::after {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+}
+
+.cloud1 {
+    width: 120px;
+    height: 40px;
+    top: 15%;
+    left: 10%;
+}
+
+.cloud1::before {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 15px;
+}
+
+.cloud1::after {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    right: 15px;
+}
+
+.cloud2 {
+    width: 150px;
+    height: 50px;
+    top: 30%;
+    right: 15%;
+}
+
+.cloud2::before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 20px;
+}
+
+.cloud2::after {
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    right: 20px;
+}
+
+.cloud3 {
+    width: 100px;
+    height: 35px;
+    bottom: 20%;
+    left: 20%;
+}
+
+.cloud3::before {
+    width: 45px;
+    height: 45px;
+    top: -20px;
+    left: 10px;
+}
+
+.cloud3::after {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    right: 10px;
+}
+.star {
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    opacity: 0.8;
+    animation: twinkle 2s infinite alternate;
+}
+.star1 {
+    top: 10%;
+    left: 15%;
+}
+
+.star2 {
+    top: 10%;
+    right: 20%;
+}
+.star3 {
+    top: 35%;
+    left: 8%;
+}
+.star4 {
+    top: 60%;
+    right: 12%;
+}
+.star5 {
+    bottom: 20%;
+    left: 25%;
+}
+.star6 {
+    bottom: 15%;
+    right: 30%;
+}
+</style>
+</head>
+<body>
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+  <div class="star star1">★</div>
+<div class="star star2">★</div>
+<div class="star star3">★</div>
+<div class="star star4">★</div>
+<div class="star star5">★</div>
+<div class="star star6">★</div>
+<div class="calculator">
+    <h1>Basic Calculator</h1>
+    <input type="text" id="display" readonly>
+    <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button onclick="appendValue('(')">(</button>
+        <button onclick="appendValue(')')">)</button>
+        <button class="operator" onclick="appendValue('/')">÷</button>
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button class="operator" onclick="appendValue('*')">×</button>
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button class="operator" onclick="appendValue('-')">−</button>
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+        <button onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button onclick="deleteLast()">⌫</button>
+        <button class="equal" onclick="calculate()">=</button>
+    </div>
+</div>
+<script>
+    const display = document.getElementById("display");
+    function appendValue(value) {
+        display.value += value;
+    }
+    function clearDisplay() {
+        display.value = "";
+    }
+    function deleteLast() {
+        display.value = display.value.slice(0, -1);
+    }
+    function calculate() {
+        try {
+            display.value = Function(
+                '"use strict"; return (' + display.value + ')'
+            )();
+        } catch {
+            display.value = "Error";
+        }
+    }
+    document.addEventListener("keydown", function(event) {
+        const key = event.key;
+
+        if ("0123456789+-*/().".includes(key)) {
+            display.value += key;
+        } else if (key === "Enter") {
+            calculate();
+        } else if (key === "Backspace") {
+            deleteLast();
+        } else if (key === "Escape") {
+            clearDisplay();
+        }
+    });
+</script>
+</body>
+</html>
