@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculator</title>
-
 <style>
     * {
         margin: 0;
@@ -12,19 +11,13 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
     }
-
     body {
       height: 100vh;
-
-display: flex;
-
-justify-content: center;
-
-align-items: center;
-
-background: linear-gradient(to bottom, #ffc7ee, #ffe6f2);
-
-overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #ffc7ee, #ffe6f2);
+      overflow: hidden;
     }
     .calculator {
         background: white;
@@ -91,7 +84,6 @@ overflow: hidden;
     border-radius: 50px;
     opacity: 0.8;
 }
-
 .cloud::before,
 .cloud::after {
     content: "";
@@ -99,63 +91,54 @@ overflow: hidden;
     background: white;
     border-radius: 50%;
 }
-
 .cloud1 {
     width: 120px;
     height: 40px;
     top: 15%;
     left: 10%;
 }
-
 .cloud1::before {
     width: 50px;
     height: 50px;
     top: -25px;
     left: 15px;
 }
-
 .cloud1::after {
     width: 60px;
     height: 60px;
     top: -30px;
     right: 15px;
 }
-
 .cloud2 {
     width: 150px;
     height: 50px;
     top: 30%;
     right: 15%;
 }
-
 .cloud2::before {
     width: 60px;
     height: 60px;
     top: -30px;
     left: 20px;
 }
-
 .cloud2::after {
     width: 70px;
     height: 70px;
     top: -35px;
     right: 20px;
 }
-
 .cloud3 {
     width: 100px;
     height: 35px;
     bottom: 20%;
     left: 20%;
 }
-
 .cloud3::before {
     width: 45px;
     height: 45px;
     top: -20px;
     left: 10px;
 }
-
 .cloud3::after {
     width: 50px;
     height: 50px;
@@ -170,10 +153,9 @@ overflow: hidden;
     animation: twinkle 2s infinite alternate;
 }
 .star1 {
-    top: 10%;
+    top: 80%;
     left: 15%;
 }
-
 .star2 {
     top: 10%;
     right: 20%;
@@ -201,13 +183,13 @@ overflow: hidden;
   <div class="cloud cloud2"></div>
   <div class="cloud cloud3"></div>
   <div class="star star1">★</div>
-<div class="star star2">★</div>
-<div class="star star3">★</div>
-<div class="star star4">★</div>
-<div class="star star5">★</div>
-<div class="star star6">★</div>
-<div class="calculator">
-    <h1>Basic Calculator</h1>
+  <div class="star star2">★</div>
+  <div class="star star3">★</div>
+  <div class="star star4">★</div>
+  <div class="star star5">★</div>
+  <div class="star star6">★</div>
+  <div class="calculator">
+    <h1>Calculator</h1>
     <input type="text" id="display" readonly>
     <div class="buttons">
         <button class="clear" onclick="clearDisplay()">C</button>
@@ -234,6 +216,9 @@ overflow: hidden;
 </div>
 <script>
     const display = document.getElementById("display");
+  
+
+
     function appendValue(value) {
         display.value += value;
     }
@@ -252,7 +237,7 @@ overflow: hidden;
             display.value = "Error";
         }
     }
-    document.addEventListener("keydown", function(event) {
+    $("keydown", function(event) {
         const key = event.key;
 
         if ("0123456789+-*/().".includes(key)) {
